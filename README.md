@@ -7,7 +7,9 @@ Initial run:
 * Install Node.js
 * `npm install`
 * `npm start` In one command line
-* Open your browser at http://localhost:3000/
+* Run chrome using command line: "chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security" (disable the Same-origin policy)
+* Browse to http://localhost:3000/
+* Delete "C:/Chrome dev session" when done
 * Enjoy!
 
 Screenshots:
