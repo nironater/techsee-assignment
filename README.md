@@ -11,7 +11,6 @@ Initial run:
 * Enjoy!
 
 Screenshots:
-<div style="display:flex">
-  <img src="src/images/found1.PNG" width="40%">
-  <img src="src/images/onLoad.PNG" width="40%" >
+<div style="display:flex;align-items:center">
+  <img src="src/images/found1.PNG" width="70%">
 </div>
