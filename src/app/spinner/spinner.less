@@ -1,0 +1,25 @@
+@spinner-size: 16px;
+@border-width: 2px;
+@animation: spin 2s linear infinite;
+
+.spinner {
+    display: inline-block;
+    border: @border-width solid #f3f3f3;
+    border-radius: 50%;
+    border-top: @border-width solid blue;
+    border-bottom: @border-width solid blue;
+    width: @spinner-size;
+    height: @spinner-size;
+    -webkit-animation: @animation;
+    animation: @animation;
+}
+  
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

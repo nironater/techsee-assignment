@@ -1,0 +1,28 @@
+.search {
+    .input-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .input-label {
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 2px;
+            
+            &.invalid {
+                background-color: red;
+            }
+
+            &::placeholder {
+                opacity: 1;
+                color: white;
+            }
+        
+            &::-ms-input-placeholder {
+                color: white;
+            }
+        }
+    }
+}

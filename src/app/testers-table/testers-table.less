@@ -1,0 +1,30 @@
+.testers-table {
+    th {
+        text-align: left;
+        &.clickable {
+            cursor: pointer;
+        }
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    thead>tr {
+        background-color: #aaa;
+    }
+
+    tbody>tr {
+        &:nth-child(odd) {
+            background-color: #ddd;
+        }
+        &:nth-child(even) {
+            background-color: white;
+        }
+    }
+}
