@@ -28,7 +28,7 @@ export class App extends React.Component {
     onFetch = (searchString: string) => {
         this.setShowSpinner(true);
         this.setShowErrors(false);
-        if (searchString === 'all') {
+        if (searchString.toLowerCase() === 'all') {
             getAllTesters()
                 .then(this.getAllTestersHandler)
                 .catch(this.searchErrorHandler);
