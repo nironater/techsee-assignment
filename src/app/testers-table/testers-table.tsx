@@ -4,9 +4,11 @@ import * as React from 'react';
 import { observable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 
-import { Tester } from '../../models';
+import { Tester } from '../../model';
 
 type SortType = "first" | "last" | "country";
+
+const SORTED_SIGN: string = '⯅';
 
 interface Props {
     testers: Tester[];
@@ -59,9 +61,15 @@ export class TestersTable extends React.Component<Props> {
         return (
             <thead>
                 <tr>
-                    <th className="clickable" onClick={() => this.setFilter("first")}>First Name</th>
-                    <th className="clickable" onClick={() => this.setFilter("last")}>Last Name</th>
-                    <th className="clickable" onClick={() => this.setFilter("country")}>Country</th>
+                    <th className="clickable" onClick={() => this.setFilter("first")}>
+                        {`First Name ${this.sortBy === 'first' ? SORTED_SIGN : ''}`}
+                    </th>
+                    <th className="clickable" onClick={() => this.setFilter("last")}>
+                        {`Last Name ${this.sortBy === 'last' ? SORTED_SIGN : ''}`}
+                    </th>
+                    <th className="clickable" onClick={() => this.setFilter("country")}>
+                        {`Country ${this.sortBy === "country" ? SORTED_SIGN : ''}`}
+                    </th>
                     <th>Bugs</th>
                 </tr>
             </thead>
@@ -70,7 +78,7 @@ export class TestersTable extends React.Component<Props> {
 
     testerToRowMapper({ firstName, lastName, country, bugs }: Tester): JSX.Element {
         return (
-            <tr key={`${firstName}${lastName}${country}`}>
+            <tr key={`${firstName}-${lastName}-${country}`}>
                 <td>{firstName}</td>
                 <td>{lastName}</td>
                 <td>{country}</td>

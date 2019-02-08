@@ -2,14 +2,13 @@ import './app.less';
 
 import * as React from 'react';
 import * as classnames from 'classnames';
-
-import DevTools from 'mobx-react-devtools';
 import { observer } from 'mobx-react';
 import { observable, action } from 'mobx';
+import DevTools from 'mobx-react-devtools';
 
-import { getResource } from '../http-service';
-import { Tester } from '../models';
+import { Tester } from '../model';
 import { TestersTable } from './testers-table/testers-table';
+import { searchTester, getAllTesters } from '../services/testers-search-service'
 import { Search } from './search/search';
 import { Spinner } from './spinner/spinner';
 
@@ -29,13 +28,19 @@ export class App extends React.Component {
     onFetch = (searchString: string) => {
         this.setShowSpinner(true);
         this.setShowErrors(false);
-        getResource<Tester[]>(searchString)
-            .then(this.searchTestersHandler)
-            .catch(this.searchTestersErrorHandler);
+        if (searchString === 'all') {
+            getAllTesters()
+                .then(this.getAllTestersHandler)
+                .catch(this.searchErrorHandler);
+        } else {
+            searchTester(searchString)
+                .then(this.searchTesterHandler)
+                .catch(this.searchErrorHandler);
+        }
     }
 
     @action
-    searchTestersHandler = (testers: Tester[]) => {
+    getAllTestersHandler = (testers: Tester[]) => {
         this.setShowSpinner(false);
         if (testers != null) {
             this.setTesters(testers);
@@ -45,7 +50,17 @@ export class App extends React.Component {
     }
 
     @action
-    searchTestersErrorHandler = (error) => {
+    searchTesterHandler = (tester: Tester) => {
+        this.setShowSpinner(false);
+        if (tester != null) {
+            this.setTesters([tester]);
+        } else {
+            this.setTesters([]);
+        }
+    }
+
+    @action
+    searchErrorHandler = (error) => {
         this.setShowSpinner(false);
         this.setShowErrors(true);
         this.setTesters([]);
